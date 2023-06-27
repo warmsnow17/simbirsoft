@@ -7,13 +7,11 @@ from selenium.webdriver.chrome.options import Options
 from allure_commons.types import AttachmentType
 import allure
 
-
 from login_page import LoginPage
 
 
 @allure.feature('Banking Application')
 class TestBank:
-
 
     @pytest.fixture
     def setup(self):
@@ -21,15 +19,14 @@ class TestBank:
         options.set_capability('browserName', 'chrome')
         options.add_argument('--disable-blink-features=AutomationControlled')
 
-
         self.driver = webdriver.Remote(command_executor='http://192.168.0.13:4444', options=options)
         self.login_page = LoginPage(self.driver)
-        self.login_page.open()
+        self.login_page.open_page()
         time.sleep(3)
-
+        assert self.driver.current_url == 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login', \
+            f'Ожидался https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login, но получили {self.driver.current_url}'
         yield
         self.driver.quit()
-
 
     @allure.story('Login Test')
     def test_login(self, setup):
@@ -42,6 +39,8 @@ class TestBank:
         bank_operations = customer_page.click_login()
         time.sleep(1)
         assert "XYZ Bank" in self.driver.title
+        assert self.driver.current_url == 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/account', \
+            f'Ожидался https://www.globalsqa.com/angularJs-protractor/BankingProject/#/account, но получили {self.driver.current_url}'
 
     @allure.story('Deposit and Withdraw Test')
     def test_deposit_withdraw(self, setup):
@@ -88,6 +87,9 @@ class TestBank:
 
         transaction_elements = transaction_page.check_transactions()
         assert len(transaction_elements) >= 2, "Не найдено достаточное количество транзакций"
+        assert self.driver.current_url == 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/listTx', \
+            f'Ожидался https://www.globalsqa.com/angularJs-protractor/BankingProject/#/listTx, но получили {self.driver.current_url}'
+
 
         transaction_data = transaction_page.get_transaction_data()
 
@@ -96,4 +98,3 @@ class TestBank:
             writer.writerows(transaction_data)
 
         allure.attach.file('transactions.csv', name='transactions', attachment_type=AttachmentType.CSV)
-
