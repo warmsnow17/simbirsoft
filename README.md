@@ -52,4 +52,4 @@
 
 Результаты тестирования можно увидеть на веб-странице, которую создает Allure.
 
-![Рабочая панель Allure](https://github.com/warmsnow17/simbirsoft/blob/media/images/picture.png)
+![Рабочая панель Allure](./media/images/picture.png)
