@@ -95,5 +95,5 @@ class TestBank:
             writer = csv.writer(file)
             writer.writerows(transaction_data)
 
-        allure.attach.file('transactions.csv', attachment_type=AttachmentType.CSV)
+        allure.attach.file('transactions.csv', name='transactions', attachment_type=AttachmentType.CSV)
 
