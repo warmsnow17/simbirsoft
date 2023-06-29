@@ -8,14 +8,6 @@ from transactions_page import TransactionsPage
 
 
 class BankOperations(BasePage):
-    def get_fibonacci_amount(self):
-        n = datetime.datetime.now().day + 1
-        fib_series = [0, 1]
-
-        while len(fib_series) < n + 1:
-            fib_series.append(fib_series[-1] + fib_series[-2])
-
-        return fib_series[n]
 
     def make_deposit(self, amount: int) -> 'BankOperations':
         deposit_button = self.driver.find_element(By.CSS_SELECTOR, 'button[ng-click="deposit()"]')

@@ -10,6 +10,7 @@ import allure
 
 from login_page import LoginPage
 from urls import selenium_server_url, account_page_url, transactions_page_url
+from utils import get_fibonacci_amount
 
 
 @allure.feature('Banking Application')
@@ -52,7 +53,7 @@ class TestBank:
         bank_operations = customer_page.click_login()
         time.sleep(1)
 
-        amount = bank_operations.get_fibonacci_amount()
+        amount = get_fibonacci_amount()
 
         bank_operations.make_deposit(amount)
         time.sleep(1)
@@ -74,7 +75,7 @@ class TestBank:
         bank_operations = customer_page.click_login()
         time.sleep(1)
 
-        amount = bank_operations.get_fibonacci_amount()
+        amount = get_fibonacci_amount()
         bank_operations.make_deposit(amount)
         time.sleep(1)
 
