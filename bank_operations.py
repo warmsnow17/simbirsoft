@@ -17,7 +17,7 @@ class BankOperations(BasePage):
 
         return fib_series[n]
 
-    def make_deposit(self, amount):
+    def make_deposit(self, amount: int) -> 'BankOperations':
         deposit_button = self.driver.find_element(By.CSS_SELECTOR, 'button[ng-click="deposit()"]')
         deposit_button.click()
         time.sleep(1)
@@ -30,7 +30,7 @@ class BankOperations(BasePage):
         time.sleep(1)
         return self
 
-    def make_withdrawal(self, amount):
+    def make_withdrawal(self, amount: int) -> 'TransactionsPage':
         withdrawal_button = self.driver.find_element(By.CSS_SELECTOR, 'button[ng-click="withdrawl()"]')
         withdrawal_button.click()
         time.sleep(1)
@@ -43,7 +43,7 @@ class BankOperations(BasePage):
         time.sleep(1)
         return TransactionsPage(self.driver)
 
-    def check_balance(self):
+    def check_balance(self) -> int:
         balance_element = self.driver.find_element(By.XPATH, '//div[@ng-hide="noAccount"]/strong[2]')
         balance = int(balance_element.text)
         return balance
