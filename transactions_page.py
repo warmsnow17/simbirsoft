@@ -2,11 +2,10 @@ import time
 
 from selenium.webdriver.common.by import By
 
+from base_page import BasePage
 
-class TransactionsPage:
-    def __init__(self, driver):
-        self.driver = driver
 
+class TransactionsPage(BasePage):
     def open_transactions(self):
         transaction_button = self.driver.find_element(By.CSS_SELECTOR, 'button[ng-click="transactions()"]')
         transaction_button.click()

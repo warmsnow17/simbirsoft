@@ -4,12 +4,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
 from bank_operations import BankOperations
+from base_page import BasePage
 
 
-class CustomerPage:
-    def __init__(self, driver):
-        self.driver = driver
-
+class CustomerPage(BasePage):
     def select_customer(self, customer_name):
         select = Select(self.driver.find_element(By.ID, 'userSelect'))
         select.select_by_visible_text(customer_name)

@@ -3,13 +3,11 @@ import time
 
 from selenium.webdriver.common.by import By
 
+from base_page import BasePage
 from transactions_page import TransactionsPage
 
 
-class BankOperations:
-    def __init__(self, driver):
-        self.driver = driver
-
+class BankOperations(BasePage):
     def get_fibonacci_amount(self):
         n = datetime.datetime.now().day + 1
         fib_series = [0, 1]
