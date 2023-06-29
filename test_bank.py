@@ -24,20 +24,15 @@ class TestBank:
         self.driver = webdriver.Remote(command_executor=selenium_server_url, options=options)
         self.login_page = LoginPage(self.driver)
         self.login_page.open_page()
-        time.sleep(3)
+
         yield
         self.driver.quit()
 
     @allure.story('Login Test')
     def test_login(self, setup: Generator) -> None:
         customer_page = self.login_page.click_customer_login()
-        time.sleep(1)
-
         customer_page.select_customer('Harry Potter')
-        time.sleep(1)
-
-        bank_operations = customer_page.click_login()
-        time.sleep(1)
+        customer_page.click_login()
         assert "XYZ Bank" in self.driver.title
         assert self.driver.current_url == account_page_url, \
             f'Ожидался {account_page_url}, но получили {self.driver.current_url}'
@@ -45,21 +40,11 @@ class TestBank:
     @allure.story('Deposit and Withdraw Test')
     def test_deposit_withdraw(self, setup: Generator) -> None:
         customer_page = self.login_page.click_customer_login()
-        time.sleep(1)
-
         customer_page.select_customer('Harry Potter')
-        time.sleep(1)
-
         bank_operations = customer_page.click_login()
-        time.sleep(1)
-
         amount = get_fibonacci_amount()
-
         bank_operations.make_deposit(amount)
-        time.sleep(1)
-
-        transaction_page = bank_operations.make_withdrawal(amount)
-        time.sleep(1)
+        bank_operations.make_withdrawal(amount)
 
         assert "XYZ Bank" in self.driver.title
         assert bank_operations.check_balance() == 0, "Баланс после снятия средств не равен нулю"
@@ -67,23 +52,14 @@ class TestBank:
     @allure.story('Transactions Test')
     def test_transactions(self, setup: Generator) -> None:
         customer_page = self.login_page.click_customer_login()
-        time.sleep(1)
-
         customer_page.select_customer('Harry Potter')
-        time.sleep(1)
-
         bank_operations = customer_page.click_login()
-        time.sleep(1)
-
         amount = get_fibonacci_amount()
         bank_operations.make_deposit(amount)
-        time.sleep(1)
-
         transaction_page = bank_operations.make_withdrawal(amount)
         time.sleep(1)
 
         transaction_page.open_transactions()
-        time.sleep(1)
 
         transaction_elements = transaction_page.check_transactions()
         assert len(transaction_elements) >= 2, "Не найдено достаточное количество транзакций"

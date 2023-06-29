@@ -3,7 +3,8 @@ from typing import List
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from base_page import BasePage
 
 
@@ -11,7 +12,9 @@ class TransactionsPage(BasePage):
     def open_transactions(self) -> 'TransactionsPage':
         transaction_button = self.driver.find_element(By.CSS_SELECTOR, 'button[ng-click="transactions()"]')
         transaction_button.click()
-        time.sleep(1)
+        WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'table.table.table-bordered.table-striped'))
+        )
         return self
 
     def check_transactions(self) -> List[WebElement]:
