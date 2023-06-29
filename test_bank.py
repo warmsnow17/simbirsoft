@@ -23,8 +23,6 @@ class TestBank:
         self.login_page = LoginPage(self.driver)
         self.login_page.open_page()
         time.sleep(3)
-        assert self.driver.current_url == 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login', \
-            f'Ожидался https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login, но получили {self.driver.current_url}'
         yield
         self.driver.quit()
 

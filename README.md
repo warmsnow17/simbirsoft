@@ -39,7 +39,7 @@
 
 4. Запустите тесты с помощью команды:
     ```
-    pytest --alluredir=./allure_results test.py
+    pytest --alluredir=./allure_results test_bank.py
     ```
 
 5. Запустите команду:
