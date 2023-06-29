@@ -8,6 +8,7 @@ from allure_commons.types import AttachmentType
 import allure
 
 from login_page import LoginPage
+from urls import selenium_server_url, account_page_url, transactions_page_url
 
 
 @allure.feature('Banking Application')
@@ -17,9 +18,8 @@ class TestBank:
     def setup(self):
         options = Options()
         options.set_capability('browserName', 'chrome')
-        options.add_argument('--disable-blink-features=AutomationControlled')
 
-        self.driver = webdriver.Remote(command_executor='http://192.168.0.13:4444', options=options)
+        self.driver = webdriver.Remote(command_executor=selenium_server_url, options=options)
         self.login_page = LoginPage(self.driver)
         self.login_page.open_page()
         time.sleep(3)
@@ -37,8 +37,8 @@ class TestBank:
         bank_operations = customer_page.click_login()
         time.sleep(1)
         assert "XYZ Bank" in self.driver.title
-        assert self.driver.current_url == 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/account', \
-            f'Ожидался https://www.globalsqa.com/angularJs-protractor/BankingProject/#/account, но получили {self.driver.current_url}'
+        assert self.driver.current_url == account_page_url, \
+            f'Ожидался {account_page_url}, но получили {self.driver.current_url}'
 
     @allure.story('Deposit and Withdraw Test')
     def test_deposit_withdraw(self, setup):
@@ -85,9 +85,8 @@ class TestBank:
 
         transaction_elements = transaction_page.check_transactions()
         assert len(transaction_elements) >= 2, "Не найдено достаточное количество транзакций"
-        assert self.driver.current_url == 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/listTx', \
-            f'Ожидался https://www.globalsqa.com/angularJs-protractor/BankingProject/#/listTx, но получили {self.driver.current_url}'
-
+        assert self.driver.current_url == transactions_page_url, f'Ожидался {transactions_page_url}, ' \
+                                                                 f'но получили {self.driver.current_url}'
 
         transaction_data = transaction_page.get_transaction_data()
 

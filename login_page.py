@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 
 from customer_page import CustomerPage
+from urls import login_page_url
 
 
 class LoginPage:
@@ -8,7 +9,7 @@ class LoginPage:
         self.driver = driver
 
     def open_page(self):
-        self.driver.get('https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login')
+        self.driver.get(login_page_url)
         return self
 
     def click_customer_login(self):
