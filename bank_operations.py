@@ -44,6 +44,6 @@ class BankOperations(BasePage):
         return TransactionsPage(self.driver)
 
     def check_balance(self):
-        balance_element = self.driver.find_element(By.CSS_SELECTOR, 'div[ng-hide="noAccount"] strong:nth-child(2)')
+        balance_element = self.driver.find_element(By.XPATH, '//div[@ng-hide="noAccount"]/strong[2]')
         balance = int(balance_element.text)
         return balance
