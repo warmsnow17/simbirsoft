@@ -18,7 +18,8 @@
     ```
     java -jar selenium-server-4.10.0.jar node --detect-drivers true --grid-url http://192.168.0.13:4444
     ```
-    Адрес может отличаться, смотрите ответ командной строки при запуске Selenium сервера (например, `17:23:09.635 INFO [UnboundZmqEventBus.<init>] - Connecting to tcp://192.168.0.13:4442 and tcp://192.168.0.13:4443`).
+    Адрес url может отличаться, смотрите ответ командной строки при запуске Selenium сервера (например, `17:23:09.635 INFO [UnboundZmqEventBus.<init>] - Connecting to tcp://192.168.0.13:4442 and tcp://192.168.0.13:4443`)
+    Внесите данный адрес в переменную selenium_server_url модуля urls.py.
 
 ## Установка и запуск тестов
 
