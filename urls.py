@@ -1,4 +1,8 @@
-selenium_server_url = 'http://192.168.0.13:4444'
-account_page_url = 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/account'
-transactions_page_url = 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/listTx'
-login_page_url = 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login'
+"""
+Модуль, содержащий URL-ы, используемые в тестах банковского приложения.
+"""
+
+SELENIUM_SERVER_URL = 'http://192.168.0.13:4444'
+ACCOUNT_PAGE_URL = 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/account'
+TRANSACTIONS_PAGE_URL = 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/listTx'
+LOGIN_PAGE_URL = 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login'

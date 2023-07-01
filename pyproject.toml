@@ -12,7 +12,11 @@ selenium-wire = "^5.1.0"
 loguru = "^0.7.0"
 allure-pytest = "^2.13.2"
 pytest = "^7.4.0"
+mypy = "^1.4.1"
 
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^2.17.4"
 
 [build-system]
 requires = ["poetry-core"]
