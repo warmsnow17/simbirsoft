@@ -1,5 +1,6 @@
 """
-Модуль, содержащий класс TransactionsPage, представляющий страницу транзакций в банковском приложении.
+Модуль, содержащий класс TransactionsPage,
+представляющий страницу транзакций в банковском приложении.
 """
 
 from typing import List
@@ -17,10 +18,14 @@ class TransactionsPage(BasePage):
 
     def open_transactions(self) -> 'TransactionsPage':
         """Открывает страницу транзакций."""
-        transaction_button = self.driver.find_element(By.CSS_SELECTOR, 'button[ng-click="transactions()"]')
+        transaction_button = self.driver.find_element(
+            By.CSS_SELECTOR, 'button[ng-click="transactions()"]'
+        )
         transaction_button.click()
         WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, 'table.table.table-bordered.table-striped'))
+            EC.presence_of_element_located((
+                By.CSS_SELECTOR, 'table.table.table-bordered.table-striped')
+            )
         )
         return self
 

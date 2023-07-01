@@ -30,6 +30,8 @@ class LoginPage(BasePage):
 
     def click_customer_login(self) -> 'CustomerPage':
         """Вход в систему как клиент и переход на страницу клиента."""
-        customer_login_button = self.driver.find_element(By.CSS_SELECTOR, 'button[ng-click="customer()"]')
+        customer_login_button = self.driver.find_element(
+            By.CSS_SELECTOR, 'button[ng-click="customer()"]'
+        )
         customer_login_button.click()
         return CustomerPage(self.driver)
