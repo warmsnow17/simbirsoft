@@ -1,3 +1,4 @@
+# pylint: disable=R0903
 """Модуль для базовой страницы.
 
 Этот модуль содержит определение класса BasePage, который является
@@ -16,10 +17,3 @@ class BasePage:
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
-
-    def get_current_url(self):
-        """Метод для получения текущего URL.
-
-        Этот метод возвращает текущий URL, открытый в драйвере.
-        """
-        return self.driver.current_url
